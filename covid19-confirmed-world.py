@@ -7,7 +7,6 @@ import mplcursors
 
 plt.rcParams["figure.figsize"] = (16, 8)
 
-
 def filterZeros(nums: List[int]):
     return [x if x > 0 else float('nan') for x in nums]
 
