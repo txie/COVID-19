@@ -1,12 +1,6 @@
 from typing import List
 import matplotlib.pyplot as plt
-# plt.style.use('fivethirtyeight')
-# plt.style.use('seaborn-dark')
-# plt.style.use('seaborn-colorblind')
-# plt.style.use('seaborn-paper')
 plt.style.use('bmh')
-# plt.style.use('tableau-colorblind10')
-# plt.style.use('ggplot')
 import numpy as np
 import pandas as pd
 import mplcursors
@@ -29,38 +23,42 @@ usData = data[(data['Country/Region'] == 'US')]
 brData = data[(data['Country/Region'] == 'Brazil')]
 agData = data[(data['Country/Region'] == 'Argentina')]
 
-ny = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New York')]
-ca = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'California')]
-wa = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Washington')]
-fl = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Florida')]
-nj = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New Jersey')]
+# ny = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New York')]
+# ca = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'California')]
+# wa = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Washington')]
+# fl = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Florida')]
+# nj = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New Jersey')]
+
+exts = [float('nan')] * 5
+xexts = [str(x) for x in range(5)]
+yUSPredicts = [2000, 2700, 3400, 4800, 6000]
 
 filterOutDays = 34
-yFr = filterZeros([frData[d].sum() for d in frData.columns[filterOutDays:]])
-yIt = filterZeros([itData[d].sum() for d in itData.columns[filterOutDays:]])
-yUS = filterZeros([usData[d].sum() for d in usData.columns[filterOutDays:]])
-yDE = filterZeros([deData[d].sum() for d in itData.columns[filterOutDays:]])
-yES = filterZeros([esData[d].sum() for d in itData.columns[filterOutDays:]])
-yUK = filterZeros([ukData[d].sum() for d in itData.columns[filterOutDays:]])
+yFr = filterZeros([frData[d].sum() for d in frData.columns[filterOutDays:]]) + exts
+yIt = filterZeros([itData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
+yUS = filterZeros([usData[d].sum() for d in usData.columns[filterOutDays:]]) + exts
+yDE = filterZeros([deData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
+yES = filterZeros([esData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
+yUK = filterZeros([ukData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
 
-yBR = filterZeros([brData[d].sum() for d in usData.columns[filterOutDays:]])
-yAG = filterZeros([agData[d].sum() for d in itData.columns[filterOutDays:]])
+yBR = filterZeros([brData[d].sum() for d in usData.columns[filterOutDays:]]) + exts
+yAG = filterZeros([agData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
 
-yNY = filterZeros([ny[d].sum() for d in ny.columns[filterOutDays:]])
-yCA = filterZeros([ca[d].sum() for d in ca.columns[filterOutDays:]])
-yWA = filterZeros([wa[d].sum() for d in wa.columns[filterOutDays:]])
-yFL = filterZeros([fl[d].sum() for d in fl.columns[filterOutDays:]])
-yNJ = filterZeros([nj[d].sum() for d in nj.columns[filterOutDays:]])
+# yNY = filterZeros([ny[d].sum() for d in ny.columns[filterOutDays:]])
+# yCA = filterZeros([ca[d].sum() for d in ca.columns[filterOutDays:]])
+# yWA = filterZeros([wa[d].sum() for d in wa.columns[filterOutDays:]])
+# yFL = filterZeros([fl[d].sum() for d in fl.columns[filterOutDays:]])
+# yNJ = filterZeros([nj[d].sum() for d in nj.columns[filterOutDays:]])
 
-x = list(map(lambda x: x[:-3], data.columns[filterOutDays:]))
+x = list(map(lambda x: x[:-3], data.columns[filterOutDays:])) + xexts
 # x = [i for i in range(len(yNY))]
 
 print('deaths: {}'.format(yUS))
 
 fig, ax = plt.subplots()
-# ax.set_yscale('log')
+ax.set_yscale('log')
 ax.set_xlim([0, 34])
-ax.set_ylim([0, 7000])
+ax.set_ylim([0, 10000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -74,14 +72,17 @@ ax.plot(x, yBR, marker='o', label='BR')
 ax.plot(x, yAG, marker='o', label='AG')
 line = ax.plot(x, yUS, lw=3, marker='o', label='US')
 
+realNumDays = len(x) - len(xexts)
+ax.plot([ realNumDays - 1 + i for i in range(6)], [yUS[-6]] + yUSPredicts, marker='o', linestyle=':', label='predict')
+
 # realNumDays = len(x) - len(xexts)
 # ax.plot([ realNumDays - 1 + i for i in range(6)], [yUS[-6]] + yUSPredicts, marker='o', linestyle=':', label='predict')
 
-ax.plot(x, yNY, marker='o', label='NY')
-ax.plot(x, yCA, marker='o', label='CA')
-ax.plot(x, yWA, marker='o', label='WA')
-ax.plot(x, yFL, marker='o', label='FL')
-ax.plot(x, yNJ, marker='o', label='NJ')
+# ax.plot(x, yNY, marker='o', label='NY')
+# ax.plot(x, yCA, marker='o', label='CA')
+# ax.plot(x, yWA, marker='o', label='WA')
+# ax.plot(x, yFL, marker='o', label='FL')
+# ax.plot(x, yNJ, marker='o', label='NJ')
 
 plt.legend()
 plt.xlabel('Days')
