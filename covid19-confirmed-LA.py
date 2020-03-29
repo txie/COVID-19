@@ -18,7 +18,7 @@ def prepYData(days, data):
         res.append(0 if len(x) == 0 else x[0])
     return res
 
-counties = ['Los Angeles', 'Orange', 'San Bernardino', 'Riverside', 'Ventura']
+counties = ['Los Angeles', 'Orange', 'San Bernardino', 'Riverside', 'Ventura', 'San Diego']
 # source: https://github.com/CSSEGISandData/COVID-19/
 data = pd.read_csv('../../covid-19-data/us-counties.csv')
 
@@ -37,11 +37,31 @@ for county in counties:
 filterOutDays = 0
 
 fig, ax = plt.subplots()
-# ax.set_yscale('log')
+ax.set_yscale('log')
 ax.set_xlim([0, 50])
 ax.set_ylim([0, 2000])
 ax.minorticks_on()
 ax.grid(color='gray')
+
+# build the timeline
+timeline = {
+    '01-23': 'Wuhan lockdown',
+    '01-30': 'WHO: Global Emergency',
+    '03-08': 'LA marathon',
+    '03-11': 'WHO declared Pandemic', 
+    '03-13': 'National Emergency', 
+    '03-19': 'Bay Area Shelter-in-Place'
+}
+quotes, q = {}, 1
+
+for i, d in enumerate(x): 
+    # print('d = {}'.format(d))
+    if d in timeline.keys():
+        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+        quotes[i] = timeline[d]
+        ax.text(1, (1.3)**(len(timeline)-q), str(q) + ': ' + timeline[d])
+        q += 1
+ax.text(1, 8, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:

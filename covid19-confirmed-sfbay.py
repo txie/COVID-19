@@ -45,6 +45,26 @@ ax.set_ylim([0, 800])
 ax.minorticks_on()
 ax.grid(color='gray')
 
+# build the timeline
+timeline = {
+    '01-23': 'Wuhan lockdown',
+    '01-30': 'WHO: Global Emergency',
+    '03-08': 'LA marathon',
+    '03-11': 'WHO declared Pandemic', 
+    '03-13': 'National Emergency', 
+    '03-17': 'Bay Area Shelter-in-Place',
+    '03-19': 'CA Shelter-in-Place'
+}
+quotes, q = {}, 1
+
+for i, d in enumerate(x): 
+    if d in timeline.keys():
+        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+        quotes[i] = timeline[d]
+        ax.text(1, 700 - 20*q, str(q) + ': ' + timeline[d])
+        q += 1
+ax.text(1, 720, 'Notes:')
+
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
     ax.plot(x[filterOutDays:], yCounties[county][filterOutDays:], marker='o', label=county)

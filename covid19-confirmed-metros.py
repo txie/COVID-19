@@ -48,26 +48,30 @@ ax.grid(color='gray')
 
 # build the timeline
 timeline = {
+    '01-23': 'Wuhan lockdown',
+    '01-30': 'WHO: Global Emergency',
     '03-08': 'LA marathon',
     '03-11': 'WHO declared Pandemic', 
     '03-13': 'National Emergency', 
-    '03-19': 'Bay Area Shelter-in-Place'
+    '03-17': 'Bay Area Shelter-in-Place', 
+    '03-19': 'CA Shelter-in-Place', 
+    '03-20': 'NY Stay-at-Home'
 }
 quotes, q = {}, 1
 
 for i, d in enumerate(x): 
     # print('d = {}'.format(d))
     if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 5), arrowprops=dict(facecolor='red', shrink=0.05))
+        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        print('y cord: {}'.format(100-q*20))
-        ax.text(71, 100 - q*20, str(q) + ': ' + timeline[d])
+        # print('y cord: {}'.format(100-q*20))
+        ax.text(58, (1.5)**(len(timeline)-q), str(q) + ': ' + timeline[d])
         q += 1
         # print('event: {}'.format(timeline[d]))
         # plt.figtext(10, 0.01 + q, timeline[d])
         # ax.text(71, 10+q*2, timeline[d])
     # ax.annotate('3/13: National Emergency', xy=(20, 0))
-ax.text(71, 120, 'Notes:')
+ax.text(58, 25, 'Notes:')
 
         # ax.annotate(timeline[d], xy=(i, 300), arrowprops=dict(facecolor='black', shrink=0.05))
 # ax.annotate('3/13: National Emergency', xy=(20, 300))

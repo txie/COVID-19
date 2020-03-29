@@ -28,7 +28,7 @@ myData = data[(data['Country/Region'] == 'Malaysia')]
 
 exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
-yUSPredicts = [125000, 150000, 170000, 185000, 200000]
+yUSPredicts = [150000, 170000, 185000, 200000, 230000]
 
 yFr = filterZeros([frData[d].sum() for d in frData.columns[20:]]) + exts
 yIt = filterZeros([itData[d].sum() for d in itData.columns[20:]]) + exts
@@ -48,12 +48,39 @@ x = list(map(lambda x: x[:-3], data.columns[20:])) + xexts
 
 print('confirmed cases: {}'.format(yUS))
 
+
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
 ax.set_ylim([0, 1000000])
 ax.minorticks_on()
 ax.grid(color='gray')
+
+
+# build the timeline
+timeline = {
+    '1/23': 'Wuhan lockdown',
+    '1/30': 'WHO: Global Emergency',
+    '3/11': 'WHO: Pandemic', 
+    '3/13': 'National Emergency', 
+    '3/19': 'Bay Area Shelter-in-Place'
+}
+quotes, q = {}, 1
+
+for i, d in enumerate(x): 
+    # print('d = {}'.format(d))
+    if d in timeline.keys():
+        ax.annotate(str(q), xy=(i, 5), arrowprops=dict(facecolor='red', shrink=0.05))
+        quotes[i] = timeline[d]
+        print('y cord: {}'.format(100-q*20))
+        ax.text(44, 100 - q*20, str(q) + ': ' + timeline[d])
+        q += 1
+        # print('event: {}'.format(timeline[d]))
+        # plt.figtext(10, 0.01 + q, timeline[d])
+        # ax.text(71, 10+q*2, timeline[d])
+    # ax.annotate('3/13: National Emergency', xy=(20, 0))
+ax.text(71, 120, 'Notes:')
+
 
 ax.plot(x, yFr, marker='o', label='FR')
 ax.plot(x, yIt, marker='o', label='IT')
