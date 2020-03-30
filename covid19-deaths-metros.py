@@ -14,11 +14,10 @@ def prepYData(days, data):
     res = []
     for d in days:
         x = list(data[(data['date'] == d)]['deaths'])
-        # print('d: {}, x: {}'.format(d, x))
         res.append(0 if len(x) == 0 else x[0])
     return res
 
-counties = ['Santa Clara', 'San Francisco', 'Los Angeles', 'New York City']
+counties = ['Santa Clara', 'San Francisco', 'Los Angeles', 'New York City', 'Orleans']
 # source: https://github.com/CSSEGISandData/COVID-19/
 data = pd.read_csv('../../covid-19-data/us-counties.csv')
 
@@ -39,9 +38,9 @@ filterOutDays = 0
 print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 
 fig, ax = plt.subplots()
-ax.set_yscale('log')
+# ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 30000])
+ax.set_ylim([0, 600])
 ax.minorticks_on()
 ax.grid(color='gray')
 

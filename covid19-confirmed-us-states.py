@@ -18,31 +18,31 @@ def prepYData(days, data):
         res.append(0 if len(x) == 0 else x[0])
     return res
 
-counties = ['Santa Clara', 'San Francisco', 'Los Angeles', 'New York City', 'Orleans']
+states = ['California', 'Washington', 'New York', 'New Jersey', 'Massachusetts', 'Louisiana', 'Texas', 'Florida', 'Michigan', 'Illinois']
 # source: https://github.com/CSSEGISandData/COVID-19/
-data = pd.read_csv('../../covid-19-data/us-counties.csv')
+data = pd.read_csv('../../covid-19-data/us-states.csv')
 
 exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-yContraCostaPredict = [500, 600, 700, 800, 1000]
-ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
+# yContraCostaPredict = [500, 600, 700, 800, 1000]
+# ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
-yCounties = {}
-for county in counties:
-    countyData = data[(data['county'] == county)][['date', 'cases']]
-    yCounties[county] = prepYData(days, countyData) + exts
+yStates = {}
+for state in states:
+    stateData = data[(data['state'] == state)][['date', 'cases']]
+    yStates[state] = prepYData(days, stateData) + exts
 
 filterOutDays = 0
 
-print('santa clara Y: {}'.format(yCounties['Santa Clara']))
+print('California Y: {}'.format(yStates['California']))
 
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 30000])
+ax.set_ylim([0, 100000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -71,13 +71,13 @@ for i, d in enumerate(x):
 ax.text(58, 40, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
-for county in counties:
-    ax.plot(x[filterOutDays:], yCounties[county][filterOutDays:], marker='o', label=county)
+for state in states:
+    ax.plot(x[filterOutDays:], yStates[state][filterOutDays:], label=state)
 
 plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
-plt.title('US Metros Confirmed COVID-19 Cases (based on NYTimes)')
+plt.title('States of US Confirmed COVID-19 Cases (based on NYTimes)')
 plt.xticks(rotation=20)
 plt.xticks(x[::2])
 

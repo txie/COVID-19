@@ -11,6 +11,7 @@ plt.rcParams["figure.figsize"] = (16, 8)
 def filterZeros(nums: List[int]):
     return [x if x > 0 else float('nan') for x in nums]
 
+# OBSOLETE, JHU no longer updates its state data
 # source: https://github.com/CSSEGISandData/COVID-19/
 data = pd.read_csv('time_series_19-covid-Confirmed.csv')
 usData = data[(data['Country/Region'] == 'US')]
@@ -50,8 +51,6 @@ line = ax.plot(x, yUS, lw=3, marker='o', label='US')
 realNumDays = len(x) - len(xexts)
 ax.plot([ realNumDays - 1 + i for i in range(6)], [yUS[-6]] + yUSPredicts1, marker='o', linestyle=':', label='Predict-1')
 ax.plot([ realNumDays - 1 + i for i in range(6)], [yUS[-6]] + yUSPredicts2, marker='*', linestyle=':', label='Predict-2')
-
-# prob = stats.probplot(x, dist=stats.norm, plot=ax)
 
 ax.plot(x, yNY, marker='o', label='NY')
 ax.plot(x, yCA, marker='o', label='CA')
