@@ -1,10 +1,12 @@
 from typing import List
 import matplotlib.pyplot as plt
-plt.style.use('bmh')
 import numpy as np
 import pandas as pd
 import mplcursors
+import itertools
+import math
 
+plt.style.use('bmh')
 plt.rcParams["figure.figsize"] = (16, 8)
 
 def filterZeros(nums: List[int]):
@@ -26,9 +28,6 @@ exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-yContraCostaPredict = [500, 600, 700, 800, 1000]
-ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
-
 
 yCounties = {}
 for county in counties:
@@ -39,10 +38,12 @@ filterOutDays = 0
 
 print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 
+maxY = max(list(itertools.chain(*yCounties.values())))
+
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 30000])
+ax.set_ylim([0, math.ceil(maxY/10000)*10000])
 ax.minorticks_on()
 ax.grid(color='gray')
 

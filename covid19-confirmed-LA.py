@@ -4,6 +4,8 @@ plt.style.use('bmh')
 import numpy as np
 import pandas as pd
 import mplcursors
+import itertools
+import math
 
 plt.rcParams["figure.figsize"] = (16, 8)
 
@@ -26,20 +28,20 @@ exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-yContraCostaPredict = [500, 600, 700, 800, 1000]
-ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
 yCounties = {}
 for county in counties:
     countyData = data[(data['county'] == county)][['date', 'cases']]
     yCounties[county] = prepYData(days, countyData) + exts
 
+maxY = max(list(itertools.chain(*yCounties.values())))
+
 filterOutDays = 0
 
 fig, ax = plt.subplots()
-ax.set_yscale('log')
+# ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 2000])
+ax.set_ylim([0, math.ceil(maxY/100)*100])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -50,7 +52,7 @@ timeline = {
     '03-08': 'LA marathon',
     '03-11': 'WHO declared Pandemic', 
     '03-13': 'National Emergency', 
-    '03-19': 'Bay Area Shelter-in-Place'
+    '03-19': 'CA Shelter-in-Place'
 }
 quotes, q = {}, 1
 
@@ -59,9 +61,9 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, (1.3)**(len(timeline)-q), str(q) + ': ' + timeline[d])
+        ax.text(1, 1250 - 40*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 8, 'Notes:')
+ax.text(1, 1300, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:

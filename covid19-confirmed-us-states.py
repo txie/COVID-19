@@ -14,7 +14,6 @@ def prepYData(days, data):
     res = []
     for d in days:
         x = list(data[(data['date'] == d)]['cases'])
-        # print('d: {}, x: {}'.format(d, x))
         res.append(0 if len(x) == 0 else x[0])
     return res
 
@@ -26,9 +25,6 @@ exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-
-# yContraCostaPredict = [500, 600, 700, 800, 1000]
-# ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
 yStates = {}
 for state in states:
@@ -63,7 +59,7 @@ quotes, q = {}, 1
 for i, d in enumerate(x): 
     # print('d = {}'.format(d))
     if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+        ax.annotate(str(q), xy=(i, 100), xytext=(i, 55), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
         ax.text(58, (1.5)**(len(timeline)-q), str(q) + ': ' + timeline[d])
         q += 1

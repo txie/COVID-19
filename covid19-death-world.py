@@ -23,15 +23,9 @@ usData = data[(data['Country/Region'] == 'US')]
 brData = data[(data['Country/Region'] == 'Brazil')]
 agData = data[(data['Country/Region'] == 'Argentina')]
 
-# ny = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New York')]
-# ca = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'California')]
-# wa = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Washington')]
-# fl = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'Florida')]
-# nj = data[(data['Country/Region'] == 'US') & (data['Province/State'] == 'New Jersey')]
-
-exts = [float('nan')] * 5
-xexts = [str(x) for x in range(5)]
-yUSPredicts = [2000, 2700, 3400, 4800, 6000]
+exts = [float('nan')] * 15
+xexts = [str(x) for x in range(15)]
+yUSPredicts = [2700, 3400, 4800, 6000, 7900]
 
 filterOutDays = 34
 yFr = filterZeros([frData[d].sum() for d in frData.columns[filterOutDays:]]) + exts
@@ -44,12 +38,6 @@ yUK = filterZeros([ukData[d].sum() for d in itData.columns[filterOutDays:]]) + e
 yBR = filterZeros([brData[d].sum() for d in usData.columns[filterOutDays:]]) + exts
 yAG = filterZeros([agData[d].sum() for d in itData.columns[filterOutDays:]]) + exts
 
-# yNY = filterZeros([ny[d].sum() for d in ny.columns[filterOutDays:]])
-# yCA = filterZeros([ca[d].sum() for d in ca.columns[filterOutDays:]])
-# yWA = filterZeros([wa[d].sum() for d in wa.columns[filterOutDays:]])
-# yFL = filterZeros([fl[d].sum() for d in fl.columns[filterOutDays:]])
-# yNJ = filterZeros([nj[d].sum() for d in nj.columns[filterOutDays:]])
-
 x = list(map(lambda x: x[:-3], data.columns[filterOutDays:])) + xexts
 # x = [i for i in range(len(yNY))]
 
@@ -58,7 +46,7 @@ print('deaths: {}'.format(yUS))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 34])
-ax.set_ylim([0, 10000])
+ax.set_ylim([0, 100000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
