@@ -16,7 +16,6 @@ def prepYData(days, data):
     res = []
     for d in days:
         x = list(data[(data['date'] == d)]['cases'])
-        # print('d: {}, x: {}'.format(d, x))
         res.append(0 if len(x) == 0 else x[0])
     return res
 
@@ -62,11 +61,11 @@ quotes, q = {}, 1
 
 for i, d in enumerate(x): 
     if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='brown', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 700 - 20*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 380 - 20*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 720, 'Notes:')
+ax.text(1, 400, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
