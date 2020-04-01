@@ -18,7 +18,7 @@ def prepYData(days, data):
     return res
 
 counties = ['Santa Clara', 'San Francisco', 'Los Angeles', 'New York City', 'Orleans']
-# source: https://github.com/CSSEGISandData/COVID-19/
+# source: https://github.com/nytimes/covid-19-data
 data = pd.read_csv('../../covid-19-data/us-counties.csv')
 
 exts = [float('nan')] * 5
@@ -40,7 +40,7 @@ print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 600])
+ax.set_ylim([0, 1000])
 ax.minorticks_on()
 ax.grid(color='gray')
 

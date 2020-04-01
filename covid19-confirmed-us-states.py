@@ -18,7 +18,7 @@ def prepYData(days, data):
     return res
 
 states = ['California', 'Washington', 'New York', 'New Jersey', 'Massachusetts', 'Louisiana', 'Texas', 'Florida', 'Michigan', 'Illinois']
-# source: https://github.com/CSSEGISandData/COVID-19/
+# source: https://github.com/nytimes/covid-19-data
 data = pd.read_csv('../../covid-19-data/us-states.csv')
 
 exts = [float('nan')] * 5

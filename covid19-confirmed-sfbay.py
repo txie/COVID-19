@@ -20,7 +20,7 @@ def prepYData(days, data):
     return res
 
 counties = ['Contra Costa', 'Alameda', 'Santa Clara', 'San Mateo', 'San Francisco', 'Marin']
-# source: https://github.com/CSSEGISandData/COVID-19/
+# source: https://github.com/nytimes/covid-19-data
 data = pd.read_csv('../../covid-19-data/us-counties.csv')
 
 exts = [float('nan')] * 5
