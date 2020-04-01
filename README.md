@@ -7,8 +7,8 @@ Generate charts for confirmed COVID-19 cases and deaths
 ![SF Bay Confirmed COVID-19 Cases](/images/covid19-sfbay.png)
 
 Data Sources: 
-* county data from New York Times: https://github.com/nytimes/covid-19-data
-* country data from JHU: https://github.com/CSSEGISandData/COVID-19
+* county and state data are from New York Times: https://github.com/nytimes/covid-19-data
+* country data are from JHU: https://github.com/CSSEGISandData/COVID-19
 
 Steps
 1. git clone the 2 repos 
