@@ -40,7 +40,7 @@ print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 1000])
+ax.set_ylim([0, 1500])
 ax.minorticks_on()
 ax.grid(color='gray')
 
