@@ -61,9 +61,9 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 1250 - 40*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 4000 - 150*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 720, 'Notes:')
+ax.text(1, 4000, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
