@@ -17,7 +17,9 @@ def prepYData(days, data):
         res.append(0 if len(x) == 0 else x[0])
     return res
 
+# states = ['California', 'New York', 'Massachusetts', 'Louisiana', 'Texas', 'Alabama']
 states = ['California', 'Washington', 'New York', 'New Jersey', 'Massachusetts', 'Louisiana', 'Texas', 'Florida', 'Michigan', 'Illinois']
+
 # source: https://github.com/nytimes/covid-19-data
 data = pd.read_csv('../../covid-19-data/us-states.csv')
 
@@ -38,7 +40,7 @@ print('California Y: {}'.format(yStates['California']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 100000])
+ax.set_ylim([0, 200000])
 ax.minorticks_on()
 ax.grid(color='gray')
 

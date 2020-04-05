@@ -41,7 +41,7 @@ filterOutDays = 0
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, math.ceil(maxY/100)*100])
+ax.set_ylim([0, math.ceil(maxY/100)*100 + 1000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -63,7 +63,7 @@ for i, d in enumerate(x):
         quotes[i] = timeline[d]
         ax.text(1, 1250 - 40*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 1300, 'Notes:')
+ax.text(1, 720, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
