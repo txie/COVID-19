@@ -20,7 +20,15 @@ def prepYData(days, data):
         res.append(0 if len(x) == 0 else x[0])
     return res
 
-counties = ['Santa Clara', 'San Francisco', 'Los Angeles', 'New York City', 'Orleans']
+counties = [
+    ('Santa Clara', 'California'), 
+    ('San Francisco', 'California'), 
+    ('Los Angeles', 'California'), 
+    ('New York City', 'New York'), 
+    ('Orleans', 'Louisiana'), 
+    ('Cook', 'Illinois'), 
+    ('Wayne', 'Michigan')
+]
 # source: https://github.com/CSSEGISandData/COVID-19/
 data = pd.read_csv('../../covid-19-data/us-counties.csv')
 
@@ -30,8 +38,9 @@ days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
 
 yCounties = {}
-for county in counties:
-    countyData = data[(data['county'] == county)][['date', 'cases']]
+for (county, state) in counties:
+    print('county: {}, state: {}'.format(county, state))
+    countyData = data[ (data['county'] == county) & (data['state'] == state) ][['date', 'cases']]
     yCounties[county] = prepYData(days, countyData) + exts
 
 filterOutDays = 0
@@ -72,7 +81,7 @@ for i, d in enumerate(x):
 ax.text(58, 40, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
-for county in counties:
+for (county, state) in counties:
     ax.plot(x[filterOutDays:], yCounties[county][filterOutDays:], marker='o', label=county)
 
 plt.legend()
