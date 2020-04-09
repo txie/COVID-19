@@ -32,7 +32,7 @@ ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
 yCounties = {}
 for county in counties:
-    countyData = data[(data['county'] == county)][['date', 'cases']]
+    countyData = data[ (data['county'] == county) & (data['state'] == 'California') ][['date', 'cases']]
     yCounties[county] = prepYData(days, countyData) + exts
 
 filterOutDays = 0
@@ -43,7 +43,7 @@ maxY = max(list(itertools.chain(*yCounties.values())))
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, math.ceil(maxY/100)*100])
+ax.set_ylim([0, math.ceil(maxY/100)*110])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -63,9 +63,9 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='brown', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 380 - 20*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 900 - 30*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 400, 'Notes:')
+ax.text(1, 900, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
