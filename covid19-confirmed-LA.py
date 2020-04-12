@@ -31,7 +31,7 @@ x = [d[5:] for d in days] + xexts
 
 yCounties = {}
 for county in counties:
-    countyData = data[(data['county'] == county)][['date', 'cases']]
+    countyData = data[ (data['county'] == county) & (data['state'] == 'California') ][['date', 'cases']]
     yCounties[county] = prepYData(days, countyData) + exts
 
 maxY = max(list(itertools.chain(*yCounties.values())))
@@ -59,11 +59,11 @@ quotes, q = {}, 1
 for i, d in enumerate(x): 
     # print('d = {}'.format(d))
     if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+        ax.annotate(str(q), xy=(i, 2000), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 4000 - 150*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 6000 - 220*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 4000, 'Notes:')
+ax.text(1, 6000, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
