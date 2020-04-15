@@ -63,7 +63,7 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='brown', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 900 - 30*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 900 - 50*q, str(q) + ': ' + timeline[d])
         q += 1
 ax.text(1, 900, 'Notes:')
 

@@ -70,25 +70,25 @@ timeline = {
 }
 quotes, q = {}, 1
 
-for i, d in enumerate(x): 
-    # print('d = {}'.format(d))
-    if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
-        quotes[i] = timeline[d]
-        ax.text(58, (1.5)**(len(timeline)-q), str(q) + ': ' + timeline[d])
-        q += 1
+# for i, d in enumerate(x): 
+#     # print('d = {}'.format(d))
+#     if d in timeline.keys():
+#         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='red', shrink=0.05))
+#         quotes[i] = timeline[d]
+#         ax.text(0, (2)**(len(timeline)-q), str(q) + ': ' + timeline[d])
+#         q += 1
 
-ax.text(58, 40, 'Notes:')
+# ax.text(58, 40, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for (county, state) in counties:
     ax.plot(x[filterOutDays:], yCounties[county][filterOutDays:], marker='o', label=county)
 
-plt.legend()
+plt.legend(loc='lower right')
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('US Metros Confirmed COVID-19 Cases (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)
