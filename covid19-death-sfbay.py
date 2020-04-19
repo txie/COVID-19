@@ -63,9 +63,9 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 15), arrowprops=dict(facecolor='brown', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 30 - 2*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 60 - 3*q, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(1, 30, 'Notes:')
+ax.text(1, 60, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
@@ -75,7 +75,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of deaths')
 plt.title('SF Bay Area COVID-19 Deaths (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)

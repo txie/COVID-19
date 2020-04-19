@@ -32,7 +32,7 @@ x = list(map(lambda x: x[:-3], data.columns[20:])) + xexts
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 150000])
+ax.set_ylim([0, 200000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -48,9 +48,9 @@ quotes, q = {}, 1
 
 for i, d in enumerate(x): 
     if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 5), arrowprops=dict(facecolor='red', shrink=0.05))
+        ax.annotate(str(q), xy=(i, 50000), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 80000 - q*4000, str(q) + ': ' + timeline[d])
+        ax.text(1, 80000 - q*5000, str(q) + ': ' + timeline[d])
         q += 1
 ax.text(1, 80000, 'Notes:')
 
@@ -65,7 +65,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('Confirmed COVID-19 Cases (based on JHU data)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)

@@ -75,7 +75,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('Santa Clara vs. LA Confirmed COVID-19 Cases (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)

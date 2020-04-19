@@ -61,7 +61,7 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 2000), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(1, 6000 - 220*q, str(q) + ': ' + timeline[d])
+        ax.text(1, 6000 - 300*q, str(q) + ': ' + timeline[d])
         q += 1
 ax.text(1, 6000, 'Notes:')
 
@@ -73,7 +73,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('Greater Los Angeles Area Confirmed COVID-19 Cases (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)

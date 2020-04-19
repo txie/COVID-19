@@ -40,7 +40,7 @@ print('California Y: {}'.format(yStates['California']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 200000])
+ax.set_ylim([0, 400000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -63,10 +63,10 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 100), xytext=(i, 55), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(58, (1.5)**(len(timeline)-q), str(q) + ': ' + timeline[d])
+        ax.text(70, (1.5)**(len(timeline)-q), str(q) + ': ' + timeline[d])
         q += 1
 
-ax.text(58, 40, 'Notes:')
+ax.text(70, 50, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for state in states:
@@ -76,7 +76,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('States of US Confirmed COVID-19 Cases (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)

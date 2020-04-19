@@ -16,7 +16,7 @@ countries = ['Italy', 'France', 'Germany', 'Spain', 'United Kingdom', 'US', 'Bra
 
 exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
-yUSPredicts = [600000, 630000, 660000, 700000, 740000]
+yUSPredicts = [740000, 775000, 810000, 850000, 900000]
 
 filterOutDays = 20
 
@@ -67,7 +67,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('Confirmed COVID-19 Cases (based on JHU data)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 mplcursors.cursor(line)

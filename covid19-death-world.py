@@ -17,7 +17,7 @@ countries = ['Italy', 'France', 'Germany', 'Spain', 'United Kingdom', 'US', 'Bra
 
 exts = [float('nan')] * 15
 xexts = [str(x) for x in range(15)]
-yUSPredicts = [29000, 32000, 35000, 39000, 42000]
+yUSPredicts = [40000, 43000, 46500, 51000, 54000]
 
 filterOutDays = 34
 
@@ -47,7 +47,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of deaths')
 plt.title('COVID-19 Deaths (based on JHU data)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 plt.show()

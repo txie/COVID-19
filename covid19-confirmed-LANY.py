@@ -26,8 +26,6 @@ exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-yContraCostaPredict = [500, 600, 700, 800, 1000]
-ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
 yCounties = {}
 for county in counties:
@@ -39,7 +37,7 @@ filterOutDays = 0
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 40000])
+ax.set_ylim([0, 300000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
@@ -51,7 +49,7 @@ plt.legend()
 plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('New York vs. LA counties Confirmed COVID-19 Cases (based on NYTimes)')
-plt.xticks(rotation=20)
+plt.xticks(rotation=45)
 plt.xticks(x[::2])
 
 # mplcursors.cursor(line)
