@@ -4,6 +4,8 @@ plt.style.use('bmh')
 import numpy as np
 import pandas as pd
 import mplcursors
+import itertools
+import math
 
 plt.rcParams["figure.figsize"] = (16, 8)
 
@@ -35,12 +37,13 @@ for county in counties:
 
 filterOutDays = 0
 
-print('santa clara Y: {}'.format(yCounties['Santa Clara']))
+print('NYC Y: {}'.format(yCounties['New York City']))
+maxY = max(list(itertools.chain(*yCounties.values())))
 
 fig, ax = plt.subplots()
 # ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 10000])
+ax.set_ylim([0, math.ceil(maxY/100)*120])
 ax.minorticks_on()
 ax.grid(color='gray')
 

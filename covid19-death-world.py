@@ -17,7 +17,7 @@ countries = ['Italy', 'France', 'Germany', 'Spain', 'United Kingdom', 'US', 'Bra
 
 exts = [float('nan')] * 15
 xexts = [str(x) for x in range(15)]
-yUSPredicts = [40000, 43000, 46500, 51000, 54000]
+yUSPredicts = [54000, 57000, 60000, 63000, 66000]
 
 filterOutDays = 34
 

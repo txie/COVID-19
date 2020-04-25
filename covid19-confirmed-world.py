@@ -16,7 +16,7 @@ countries = ['Italy', 'France', 'Germany', 'Spain', 'United Kingdom', 'US', 'Bra
 
 exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
-yUSPredicts = [740000, 775000, 810000, 850000, 900000]
+yUSPredicts = [850000, 900000, 1000000, 1030000, 1070000]
 
 filterOutDays = 20
 
@@ -51,9 +51,9 @@ for i, d in enumerate(x):
     if d in timeline.keys():
         ax.annotate(str(q), xy=(i, 5), arrowprops=dict(facecolor='red', shrink=0.05))
         quotes[i] = timeline[d]
-        ax.text(44, 100 - q*20, str(q) + ': ' + timeline[d])
+        ax.text(60, 100 - q*20, str(q) + ': ' + timeline[d])
         q += 1
-ax.text(71, 120, 'Notes:')
+ax.text(60, 120, 'Notes:')
 
 for country in countries:
     ax.plot(x, yCountryData[country], label=country)
