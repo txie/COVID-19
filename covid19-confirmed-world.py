@@ -16,7 +16,7 @@ countries = ['Italy', 'France', 'Germany', 'Spain', 'United Kingdom', 'US', 'Bra
 
 exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
-yUSPredicts = [850000, 900000, 1000000, 1030000, 1070000]
+yUSPredicts = [1720000, 1750000, 1800000, 1830000, 1870000]
 
 filterOutDays = 20
 
@@ -32,7 +32,7 @@ print('US confirmed cases: {}'.format(yCountryData['US']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 1000000])
+ax.set_ylim([0, 2000000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
