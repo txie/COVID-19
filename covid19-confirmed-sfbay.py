@@ -27,15 +27,15 @@ exts = [float('nan')] * 5
 xexts = [str(x) for x in range(5)]
 days = data['date'].drop_duplicates(keep='last')
 x = [d[5:] for d in days] + xexts
-yContraCostaPredict = [500, 600, 700, 800, 1000]
-ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
+# yContraCostaPredict = [500, 600, 700, 800, 1000]
+# ySantaClaraPredict = [1500, 1600, 1700, 1800, 2000]
 
 yCounties = {}
 for county in counties:
     countyData = data[ (data['county'] == county) & (data['state'] == 'California') ][['date', 'cases']]
     yCounties[county] = prepYData(days, countyData) + exts
 
-filterOutDays = 0
+filterOutDays = 400
 
 print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 maxY = max(list(itertools.chain(*yCounties.values())))
@@ -59,13 +59,13 @@ timeline = {
 }
 quotes, q = {}, 1
 
-for i, d in enumerate(x): 
-    if d in timeline.keys():
-        ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='brown', shrink=0.05))
-        quotes[i] = timeline[d]
-        ax.text(1, 900 - 50*q, str(q) + ': ' + timeline[d])
-        q += 1
-ax.text(1, 900, 'Notes:')
+# for i, d in enumerate(x): 
+#     if d in timeline.keys():
+#         ax.annotate(str(q), xy=(i, 100), arrowprops=dict(facecolor='brown', shrink=0.05))
+#         quotes[i] = timeline[d]
+#         ax.text(1, 900 - 50*q, str(q) + ': ' + timeline[d])
+#         q += 1
+# ax.text(1, 900, 'Notes:')
 
 print('x: {}'.format(x[filterOutDays:]))
 for county in counties:
@@ -76,7 +76,7 @@ plt.xlabel('Days')
 plt.ylabel('# of confirmed cases')
 plt.title('SF Bay Area Confirmed COVID-19 Cases (based on NYTimes)')
 plt.xticks(rotation=45)
-plt.xticks(x[::2])
+plt.xticks(x[filterOutDays::2])
 
 # mplcursors.cursor(line)
 

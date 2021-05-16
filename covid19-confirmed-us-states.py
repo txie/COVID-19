@@ -40,7 +40,7 @@ print('California Y: {}'.format(yStates['California']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 400000])
+ax.set_ylim([0, 1000000])
 ax.minorticks_on()
 ax.grid(color='gray')
 

@@ -32,7 +32,7 @@ print('US confirmed cases: {}'.format(yCountryData['US']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 50])
-ax.set_ylim([0, 2000000])
+ax.set_ylim([0, 10000000])
 ax.minorticks_on()
 ax.grid(color='gray')
 

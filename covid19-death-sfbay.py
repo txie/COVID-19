@@ -1,6 +1,7 @@
 from typing import List
+import matplotlib as mpl
 import matplotlib.pyplot as plt
-plt.style.use('bmh')
+#plt.style.use('bmh')
 import numpy as np
 import pandas as pd
 import mplcursors
@@ -35,7 +36,7 @@ for county in counties:
     countyData = data[ (data['county'] == county) & (data['state'] == 'California') ][['date', 'deaths']]
     yCounties[county] = prepYData(days, countyData) + exts
 
-filterOutDays = 0
+filterOutDays = 300
 
 print('santa clara Y: {}'.format(yCounties['Santa Clara']))
 maxY = max(list(itertools.chain(*yCounties.values())))

@@ -32,7 +32,7 @@ print('US deaths: {}'.format(yCountryData['US']))
 fig, ax = plt.subplots()
 ax.set_yscale('log')
 ax.set_xlim([0, 34])
-ax.set_ylim([0, 100000])
+ax.set_ylim([0, 200000])
 ax.minorticks_on()
 ax.grid(color='gray')
 
